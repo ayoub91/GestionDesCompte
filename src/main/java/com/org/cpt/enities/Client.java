@@ -1,21 +1,51 @@
 package com.org.cpt.enities;
 
 import java.io.Serializable;
+import java.util.List;
 
-public class Client implements Serializable{
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
+public class Client implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	private Long cin;
 	private String nom;
 	private String prenom;
 	private String email;
 	private String addresse;
 
+	@OneToMany(mappedBy = "client")
+	private List<Compte> comptes;
 
+	public Client(Long cin, String nom, String prenom, String email, String addresse, List<Compte> comptes) {
+		super();
+		this.cin = cin;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.addresse = addresse;
+		this.comptes = comptes;
+	}
+
+	public List<Compte> getComptes() {
+		return comptes;
+	}
+
+	public void setComptes(List<Compte> comptes) {
+		this.comptes = comptes;
+	}
 
 	public Long getCin() {
 		return cin;
@@ -60,7 +90,7 @@ public class Client implements Serializable{
 	@Override
 	public String toString() {
 		return "Client [cin=" + cin + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", addresse="
-				+ addresse + "]";
+				+ addresse + ", comptes=" + comptes + "]";
 	}
 
 }
