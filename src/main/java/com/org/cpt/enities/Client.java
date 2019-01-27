@@ -9,12 +9,13 @@ public class Client implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+
 	private Long cin;
 	private String nom;
 	private String prenom;
 	private String email;
 	private String addresse;
-
+ 
 
 
 	public Long getCin() {
